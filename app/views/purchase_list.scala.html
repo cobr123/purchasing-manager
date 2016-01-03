@@ -3,6 +3,11 @@
 @main(title) {
     <a href="/">Index</a></br>
     <table border="1" cellpadding="2" cellspacing="0">
+        <tr>
+            <td colspan="2">
+                @purchase_form_add(true)
+            </td>
+        </tr>
     @for(purchase <- purchases) {
         <tr>
             <td valign="top" align="left">

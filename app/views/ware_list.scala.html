@@ -6,6 +6,11 @@
     <tr>
         <td valign="top" align="left">
             <table border="1" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td colspan="2">
+                        @purchase_form_add()
+                    </td>
+                </tr>
                 @for(purchase <- purchases) {
                 <tr>
                     <td valign="top" align="left">
@@ -24,6 +29,11 @@
         </td>
         <td valign="top" align="left">
             <table border="1" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td colspan="2">
+                        @client_form_add()
+                    </td>
+                </tr>
                 @for(client <- clients) {
                 <tr>
                     <td valign="top" align="left">
@@ -42,6 +52,11 @@
         </td>
         <td>
             <table border="1" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td colspan="2">
+                        @ware_form_add(true)
+                    </td>
+                </tr>
                 @for(ware <- wares) {
                 <tr>
                     <td valign="top" align="left">

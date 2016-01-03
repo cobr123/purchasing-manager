@@ -1,0 +1,9 @@
+@(autofocusToName: Boolean = false)
+
+@main("") {
+<form method="post" autocomplete="on">
+    <input type="text" @if(autofocusToName) {autofocus="autofocus"} required="required" name="name" placeholder="Название товара">
+    <input type="number" required="required" step="0.01" name="price" placeholder="Цена">
+    <input type="submit" value="Добавить товар">
+</form>
+}
