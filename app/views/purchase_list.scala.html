@@ -1,0 +1,14 @@
+@(title: String, purchases: Seq[Purchase])
+
+@main(title) {
+    <a href="/">Index</a></br>
+    <table border="1" cellpadding="2" cellspacing="0">
+    @for(purchase <- purchases) {
+        <tr>
+            <td valign="top" align="left">
+                <a href="/purchase/@purchase.id">@purchase.name</a>
+            </td>
+        </tr>
+    }
+    </table>
+}

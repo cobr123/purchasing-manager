@@ -1,0 +1,50 @@
+@(title: String, selectedPurchaseId: Long, selectedClientId: Long, purchases: Seq[Purchase], clients: Seq[Client], wares: Seq[Ware])
+
+@main(title) {
+<a href="/">Index</a></br>
+<table border="0" cellpadding="2" cellspacing="0">
+    <tr>
+        <td valign="top" align="left">
+            <table border="1" cellpadding="2" cellspacing="0">
+                @for(purchase <- purchases) {
+                <tr>
+                    <td valign="top" align="left">
+                        @if(purchase.id.equals(selectedPurchaseId)) {
+                        <b>@purchase.name</b>
+                        } else {
+                        <a href="/purchase/@purchase.id">@purchase.name</a>
+                        }
+                    </td>
+                </tr>
+                }
+            </table>
+        </td>
+        <td valign="top" align="left">
+            <table border="1" cellpadding="2" cellspacing="0">
+                @for(client <- clients) {
+                <tr>
+                    <td valign="top" align="left">
+                        @if(client.id.equals(selectedClientId)) {
+                        <b>@client.name</b>
+                        } else {
+                        <a href="/client/@client.id">@client.name</a>
+                        }
+                    </td>
+                </tr>
+                }
+            </table>
+        </td>
+        <td>
+            <table border="1" cellpadding="2" cellspacing="0">
+                @for(ware <- wares) {
+                <tr>
+                    <td valign="top" align="left">
+                        @ware.name
+                    </td>
+                </tr>
+                }
+            </table>
+        </td>
+    </tr>
+</table>
+}
