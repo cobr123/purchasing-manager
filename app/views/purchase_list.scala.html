@@ -8,6 +8,9 @@
             <td valign="top" align="left">
                 <a href="/purchase/@purchase.id">@purchase.name</a>
             </td>
+            <td valign="top" align="right">
+                @purchase.getSum.setScale(2).rounded
+            </td>
         </tr>
     }
     </table>

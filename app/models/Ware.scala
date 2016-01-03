@@ -3,7 +3,7 @@ package models
 import com.github.aselab.activerecord._
 import com.github.aselab.activerecord.dsl._
 
-case class Ware(@Required name: String) extends ActiveRecord {
+case class Ware(@Required name: String, @Required price: BigDecimal) extends ActiveRecord {
   @Required var clientId: Long = _
   lazy val client = belongsTo[Client]
 }

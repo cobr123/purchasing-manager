@@ -15,6 +15,9 @@
                         <a href="/purchase/@purchase.id">@purchase.name</a>
                         }
                     </td>
+                    <td valign="top" align="right">
+                        @purchase.getSum.setScale(2).rounded
+                    </td>
                 </tr>
                 }
             </table>
@@ -30,6 +33,9 @@
                         <a href="/client/@client.id">@client.name</a>
                         }
                     </td>
+                    <td valign="top" align="right">
+                        @client.getSum.setScale(2).rounded
+                    </td>
                 </tr>
                 }
             </table>
@@ -40,6 +46,9 @@
                 <tr>
                     <td valign="top" align="left">
                         @ware.name
+                    </td>
+                    <td valign="top" align="right">
+                        @ware.price.setScale(2).rounded
                     </td>
                 </tr>
                 }

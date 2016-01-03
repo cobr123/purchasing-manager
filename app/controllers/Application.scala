@@ -18,7 +18,7 @@ class Application extends Controller {
         val c1 = Client("Client #" + ci).create
         p1.clients << c1
         for (wi <- 1 to 7) {
-          val w1 = Ware("Ware #" + wi).create
+          val w1 = Ware("Ware #" + wi, wi + ci + pi).create
           c1.wares << w1
         }
       }
