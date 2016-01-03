@@ -31,14 +31,14 @@ class Application extends Controller {
 
   def index = Action {
     val purchases = Purchase.all.toList
-    Ok(views.html.purchase_list("Purchase list", purchases))
+    Ok(views.html.purchase_list("Список закупок", purchases))
   }
 
   def purchase(purchaseId: Long) = Action {
     Purchase.find(purchaseId).getOrElse(None) match {
       case p: Purchase => {
         val purchases = Purchase.all.toList
-        Ok(views.html.client_list("Purchase card.", p.id, purchases, p.clients.toList))
+        Ok(views.html.client_list("Список покупателей закупки \"" + p.name + "\"", p.id, purchases, p.clients.toList))
       }
       case _ => NotFound
     }
@@ -49,7 +49,7 @@ class Application extends Controller {
       case c: Client => {
         val purchases = Purchase.all.toList
         val clients = c.purchase.clients.toList
-        Ok(views.html.ware_list("Client card.", c.purchaseId, c.id, purchases, clients, c.wares.toList))
+        Ok(views.html.ware_list("Список товаров покупателя \"" + c.name + "\" из закупки \"" + c.purchase.name + "\"", c.purchaseId, c.id, purchases, clients, c.wares.toList))
       }
       case _ => NotFound
     }
