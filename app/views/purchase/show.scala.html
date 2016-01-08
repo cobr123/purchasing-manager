@@ -1,7 +1,5 @@
-@(purchase: models.Purchase)(implicit lang: Lang)
+@(purchase: models.Purchase)(implicit lang: Lang, messages: Messages)
 
-@import play.api.Play.current
-@import play.api.i18n.Messages.Implicits._
 @import com.github.aselab.activerecord.dsl._
 @import views.html.client.table
 

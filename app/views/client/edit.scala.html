@@ -1,6 +1,6 @@
 @(client: Form[models.Client], purchaseId: Long, action: Call, buttonLabel: String, title: String)(implicit lang: Lang, messages: Messages)
 
-@import models.Client.helper._
+@import views.html.helper._
 
 @main(title) {
 <ul class="breadcrumb">
@@ -12,14 +12,11 @@
     </li>
 </ul>
 
-<div class="page-header">
-    <h1>Клиент</h1>
-</div>
 <div class="col-lg-8">
     @helper.form(action, 'class -> "form-horizontal") {
     <fieldset>
         @inputText(client("name"))
-        @inputText(client("price"))
+        @inputText(client("deliveryPrice"))
     </fieldset>
     <div class="well">
         <button class="btn btn-primary" type="submit">@buttonLabel</button>

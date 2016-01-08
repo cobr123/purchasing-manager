@@ -1,7 +1,5 @@
-@(clients: List[models.Client], purchaseId: Long)(implicit lang: Lang)
+@(clients: List[models.Client], purchaseId: Long)(implicit lang: Lang, messages: Messages)
 
-@import play.api.Play.current
-@import play.api.i18n.Messages.Implicits._
 @import com.github.aselab.activerecord.dsl._
 
 @main("Client list") {

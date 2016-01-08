@@ -1,6 +1,6 @@
 @(purchase: Form[models.Purchase], action: Call, buttonLabel: String, title: String)(implicit lang: Lang, messages: Messages)
 
-@import models.Purchase.helper._
+@import views.html.helper._
 
 @main(title) {
 <ul class="breadcrumb">
@@ -11,9 +11,6 @@
     </li>
 </ul>
 
-<div class="page-header">
-    <h1>Purchase</h1>
-</div>
 <div class="col-lg-8">
     @helper.form(action, 'class -> "form-horizontal") {
     <fieldset>

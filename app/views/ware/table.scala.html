@@ -1,7 +1,5 @@
-@(wares: List[models.Ware], purchaseId: Long, clientId: Long)(implicit lang: Lang)
+@(wares: List[models.Ware], purchaseId: Long, clientId: Long)(implicit lang: Lang, messages: Messages)
 
-@import play.api.Play.current
-@import play.api.i18n.Messages.Implicits._
 @import com.github.aselab.activerecord.dsl._
 
 <table class="table table-striped">

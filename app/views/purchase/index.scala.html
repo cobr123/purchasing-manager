@@ -1,7 +1,4 @@
-@(purchases: List[models.Purchase])(implicit lang: Lang)
-
-@import play.api.Play.current
-@import play.api.i18n.Messages.Implicits._
+@(purchases: List[models.Purchase])(implicit lang: Lang, messages: Messages)
 
 @main("Purchase list") {
 <ul class="breadcrumb">
