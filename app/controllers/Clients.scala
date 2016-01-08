@@ -2,7 +2,8 @@ package controllers
 
 import javax.inject.Inject
 
-import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.Logger
+import play.api.i18n.{Messages, I18nSupport, MessagesApi}
 import play.api.mvc._
 import views.html.{client => view}
 
@@ -11,7 +12,7 @@ import com.github.aselab.activerecord.dsl._
 
 class Clients @Inject() (val messagesApi: MessagesApi) extends Controller with I18nSupport {
   def withPurchase(purchaseId: Long)(block: (Purchase, Request[AnyContent]) => Result) =
-    Action { request =>
+    Action {implicit request =>
       Purchase.find(purchaseId).map { m => block(m, request) }.getOrElse { NotFound }
     }
 
@@ -39,8 +40,8 @@ class Clients @Inject() (val messagesApi: MessagesApi) extends Controller with I
       })
   }
 
-  def edit(purchaseId: Long, id: Long) = withPurchase(purchaseId) { (m, request) =>
-    m.clients.find(id) match {
+  def edit(purchaseId: Long, id: Long) = withPurchase(purchaseId) { (purchase, request) =>
+    purchase.clients.find(id) match {
       case Some(client) =>
         Ok(view.edit(Client.form(client.assign("purchaseId" -> purchaseId)), purchaseId, routes.Clients.update(purchaseId, id), "Update", "Client edit"))
       case _ => NotFound
@@ -54,7 +55,7 @@ class Clients @Inject() (val messagesApi: MessagesApi) extends Controller with I
           errors => BadRequest(view.edit(errors, purchaseId, routes.Clients.update(purchaseId, id), "Update", "Client edit")), {
             client =>
               Client.transaction { client.save }
-              Redirect(routes.Clients.index(purchaseId))
+              Redirect(routes.Purchases.show(purchaseId))
           })
       case _ => NotFound
     }

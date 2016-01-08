@@ -13,7 +13,6 @@ import com.github.aselab.activerecord.dsl._
 
 class Purchases @Inject() (val messagesApi: MessagesApi) extends Controller with I18nSupport {
   def index = Action { implicit request =>
-    Logger.logger.debug("request2Messages.lang: " +  Messages("common.languages"))
     Ok(view.index(Purchase.all.toList))
   }
 

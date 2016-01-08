@@ -5,8 +5,8 @@
 @main(title) {
 <ul class="breadcrumb">
     <li><a href="/">@Messages("common.home")</a></li>
-    <li><a href="@routes.Clients.show(purchaseId, clientId)">@Messages("activerecord.models.Client.title")</a></li>
-    <li><a href="@routes.Wares.index(purchaseId, clientId)">@Messages("activerecord.models.Ware.title")</a></li>
+    <li><a href="@routes.Purchases.show(purchaseId)">@Messages("activerecord.models.Client.title")</a></li>
+    <li><a href="@routes.Clients.show(purchaseId, clientId)">@Messages("activerecord.models.Ware.title")</a></li>
     <li class="active">
         @(if (action == routes.Wares.create(purchaseId, clientId)) "Новый товар" else ware.value.map(_.name).getOrElse(ware.data("name")))
     </li>
@@ -20,7 +20,7 @@
     </fieldset>
     <div class="well">
         <button class="btn btn-primary" type="submit">@buttonLabel</button>
-        <a href="@routes.Wares.index(purchaseId, clientId)" class="btn btn-default">@Messages("common.cancel")</a>
+        <a href="@routes.Clients.show(purchaseId, clientId)" class="btn btn-default">@Messages("common.cancel")</a>
     </div>
     }
 </div>

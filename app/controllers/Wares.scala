@@ -2,7 +2,8 @@ package controllers
 
 import javax.inject.Inject
 
-import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.Logger
+import play.api.i18n.{Messages, I18nSupport, MessagesApi}
 import play.api.mvc._
 import views.html.{ware => view}
 
@@ -11,7 +12,7 @@ import com.github.aselab.activerecord.dsl._
 
 class Wares @Inject() (val messagesApi: MessagesApi) extends Controller with I18nSupport {
   def withClient(clientId: Long)(block: (Client, Request[AnyContent]) => Result) =
-    Action { request =>
+    Action {implicit request =>
       Client.find(clientId).map { m => block(m, request) }.getOrElse { NotFound }
     }
 
@@ -54,7 +55,7 @@ class Wares @Inject() (val messagesApi: MessagesApi) extends Controller with I18
           errors => BadRequest(view.edit(errors, purchaseId, clientId, routes.Wares.update(purchaseId, clientId, id), "Update", "Ware edit")), {
             ware =>
               Ware.transaction { ware.save }
-              Redirect(routes.Wares.index(purchaseId, clientId))
+              Redirect(routes.Clients.show(purchaseId, clientId))
           })
       case _ => NotFound
     }
