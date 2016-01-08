@@ -1,0 +1,42 @@
+@(clients: List[models.Client], purchaseId: Long)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+@import com.github.aselab.activerecord.dsl._
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>@Messages("activerecord.models.Client.name")</th>
+        <th>@Messages("activerecord.models.Client.sum")</th>
+        <th>@Messages("activerecord.models.Client.deliveryPrice")</th>
+        <th>@Messages("common.actions")</th>
+    </tr>
+    </thead>
+    <tbody>
+    @clients.map { client =>
+    <tr>
+        <td><a href="@routes.Clients.show(purchaseId, client.id)">@client.name</a></td>
+        <td>@client.getSum.setScale(2).rounded</td>
+        <td>@client.deliveryPrice.setScale(2).rounded</td>
+        <td>
+            <a href="@routes.Clients.edit(purchaseId, client.id)" class="btn btn-default btn-sm">@Messages("common.edit")</a>
+            <a href="#" data-redirect="@routes.Clients.index(purchaseId)" data-target="@routes.Clients.delete(client.id, purchaseId)" class="btn btn-sm btn-danger">@Messages("common.delete")</a>
+        </td>
+    </tr>
+    }
+    @if(clients.isEmpty) {
+    <tr>
+        <td colspan="3">
+            <div class="alert alert-info">
+                <strong>@Messages("activerecord.models.Client.empty_list")</strong>
+            </div>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<div class="form-actions">
+    <a href="@routes.Clients.newPage(purchaseId)" class="btn btn-primary">@Messages("activerecord.models.Client.create")</a>
+</div>

@@ -5,13 +5,11 @@
 
 @main("Purchase list") {
 <ul class="breadcrumb">
-    <li><a href="/">Home</a></li>
-    <li class="active">Purchase</li>
+    <li><a href="/">@Messages("common.home")</a></li>
+    <li class="active">@Messages("activerecord.models.Purchase.title")</li>
+    <li><a href="/initTestTables">initTestTables</a></li>
 </ul>
 
-<div class="page-header">
-    <h1>Purchase</h1>
-</div>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -24,8 +22,8 @@
     <tr>
         <td><a href="@routes.Purchases.show(m.id)">@m.name</a></td>
         <td>
-            <a href="@routes.Purchases.edit(m.id)" class="btn btn-default btn-sm">Edit</a>
-            <a href="#" data-redirect="@routes.Purchases.index" data-target="@routes.Purchases.delete(m.id)" class="btn btn-sm btn-danger">Delete</a>
+            <a href="@routes.Purchases.edit(m.id)" class="btn btn-default btn-sm">@Messages("common.edit")</a>
+            <a href="#" data-redirect="@routes.Purchases.index" data-target="@routes.Purchases.delete(m.id)" class="btn btn-sm btn-danger">@Messages("common.delete")</a>
         </td>
     </tr>
     }
@@ -33,7 +31,7 @@
     <tr>
         <td colspan="2">
             <div class="alert alert-info">
-                <strong>Data is nothing.</strong>
+                <strong>@Messages("activerecord.models.Purchase.empty_list")</strong>
             </div>
         </td>
     </tr>
@@ -42,6 +40,6 @@
 </table>
 
 <div class="form-actions">
-    <a href="@routes.Purchases.newPage" class="btn btn-primary">Create</a>
+    <a href="@routes.Purchases.newPage" class="btn btn-primary">@Messages("activerecord.models.Purchase.create")</a>
 </div>
 }

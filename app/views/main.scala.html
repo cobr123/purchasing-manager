@@ -24,7 +24,7 @@
           }
         });
         $(".btn-danger").click(function(){
-          var result = confirm("Are you sure?");
+          var result = confirm("@Messages("common.are_you_sure")");
           var self = $(this);
           if (result) {
             $.ajax({

@@ -1,0 +1,40 @@
+@(wares: List[models.Ware], purchaseId: Long, clientId: Long)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+@import com.github.aselab.activerecord.dsl._
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>@Messages("activerecord.models.Ware.name")</th>
+        <th>@Messages("activerecord.models.Ware.price")</th>
+        <th>@Messages("common.actions")</th>
+    </tr>
+    </thead>
+    <tbody>
+    @wares.map { ware =>
+    <tr>
+        <td>@ware.name</td>
+        <td>@ware.price.setScale(2).rounded</td>
+        <td>
+            <a href="@routes.Wares.edit(purchaseId, clientId, ware.id)" class="btn btn-default btn-sm">@Messages("common.edit")</a>
+            <a href="#" data-redirect="@routes.Wares.index(purchaseId, clientId)" data-target="@routes.Wares.delete(purchaseId, clientId, ware.id)" class="btn btn-sm btn-danger">@Messages("common.delete")</a>
+        </td>
+    </tr>
+    }
+    @if(wares.isEmpty) {
+    <tr>
+        <td colspan="3">
+            <div class="alert alert-info">
+                <strong>@Messages("activerecord.models.Ware.empty_list")</strong>
+            </div>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<div class="form-actions">
+    <a href="@routes.Wares.newPage(purchaseId, clientId)" class="btn btn-primary">@Messages("activerecord.models.Ware.create")</a>
+</div>

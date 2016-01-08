@@ -3,38 +3,33 @@
 @import play.api.Play.current
 @import play.api.i18n.Messages.Implicits._
 @import com.github.aselab.activerecord.dsl._
+@import views.html.client.table
 
 @main("Purchase info") {
 <ul class="breadcrumb">
-    <li><a href="/">Home</a></li>
-    <li><a href="@routes.Purchases.index">Purchase</a></li>
+    <li><a href="/">@Messages("common.home")</a></li>
+    <li><a href="@routes.Purchases.index">@Messages("activerecord.models.Purchase.title")</a></li>
     <li class="active">@purchase.name</li>
 </ul>
 
-<div class="page-header">
-    <h1>Purchase</h1>
-</div>
 <div class="col-lg-8">
-    <dl class="dl-horizontal">
-        <dt>@Messages("activerecord.models.Purchase.name")</dt>
-        <dd>@purchase.name</dd>
-        <dt>
-            @Messages("activerecord.models.Purchase.ads")
-            <a href="@routes.Clients.newPage(purchase.id)" class="btn btn-xs btn-success">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
-        </dt>
-        <dd>
-            @purchase.clients.map { client =>
-            @client.name (@client.deliveryPrice)<br/>
-            }
-        </dd>
-    </dl>
-
     <div class="well">
-        <a href="@routes.Purchases.index" class="btn btn-default">Back</a>
-        <a href="@routes.Purchases.edit(purchase.id)" class="btn btn-default">Edit</a>
-        <a href="#" data-redirect="@routes.Purchases.index" data-target="@routes.Purchases.delete(purchase.id)" class="btn btn-danger">Delete</a>
+        <dl class="dl-horizontal">
+            <dt>@Messages("activerecord.models.Purchase.name")</dt>
+            <dd>@purchase.name</dd>
+
+            <dt>@Messages("activerecord.models.Purchase.sum")</dt>
+            <dd>@purchase.getSum.setScale(2).rounded</dd>
+
+            <dt>@Messages("activerecord.models.Purchase.deliveryPrice")</dt>
+            <dd>@purchase.deliveryPrice.setScale(2).rounded</dd>
+        </dl>
+
+        <a href="@routes.Purchases.index" class="btn btn-default">@Messages("common.back")</a>
+        <a href="@routes.Purchases.edit(purchase.id)" class="btn btn-default">@Messages("common.edit")</a>
+        <a href="#" data-redirect="@routes.Purchases.index" data-target="@routes.Purchases.delete(purchase.id)" class="btn btn-danger">@Messages("common.delete")</a>
     </div>
 </div>
+
+@table(purchase.clients.toList, purchase.id)
 }

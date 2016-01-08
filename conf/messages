@@ -10,29 +10,36 @@ activerecord.errors.format = doesn''t match format
 activerecord.errors.confirmation = doesn''t match
 activerecord.errors.accepted = must be accepted
 
-activerecord.models.User.name = Name
-activerecord.models.User.login = Login
-activerecord.models.User.email = Email
-activerecord.models.User.password = Password
-activerecord.models.User.passwordConfirmation = Password confirmation
-
+activerecord.models.Purchase.create = Create purchase
+activerecord.models.Purchase.title = Purchase
+activerecord.models.Purchase.empty_list = Purchases not found
 activerecord.models.Purchase.name = Name
 activerecord.models.Purchase.sum = Sum
 activerecord.models.Purchase.deliveryPrice = Delivery price
 activerecord.models.Purchase.empty_list = Empty list
 
+activerecord.models.Client.create = Create client
+activerecord.models.Client.title = Client
+activerecord.models.Client.empty_list = Clients not found
 activerecord.models.Client.name = Name
 activerecord.models.Client.sum = Sum
 activerecord.models.Client.deliveryPrice = Delivery price
 activerecord.models.Client.empty_list = Empty list
 
+activerecord.models.Ware.create = Create ware
+activerecord.models.Ware.title = Ware
+activerecord.models.Ware.empty_list = Wares not found
 activerecord.models.Ware.name = Name
 activerecord.models.Ware.price = Price
 
+common.home = Home
 common.actions = Actions
 common.edit = Edit
+common.update = Update
 common.delete = Delete
+common.back = Back
 common.cancel = Cancel
+common.are_you_sure = Are you sure?
 
 common.languages = Language
 common.lang.en = English

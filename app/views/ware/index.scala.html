@@ -6,45 +6,10 @@
 
 @main("Ware list") {
 <ul class="breadcrumb">
-    <li><a href="/">Home</a></li>
-    <li><a href="@routes.Clients.show(purchaseId, clientId)">Clients</a></li>
-    <li class="active">Ware</li>
+    <li><a href="/">@Messages("common.home")</a></li>
+    <li><a href="@routes.Clients.show(purchaseId, clientId)">@Messages("activerecord.models.Client.title")</a></li>
+    <li class="active">@Messages("activerecord.models.Ware.title")</li>
 </ul>
 
-<div class="page-header">
-    <h1>Ware</h1>
-</div>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>@Messages("activerecord.models.Ware.name")</th>
-        <th>@Messages("Actions")</th>
-    </tr>
-    </thead>
-    <tbody>
-    @wares.map { ware =>
-    <tr>
-        <td>@ware.name</td>
-        <td>@ware.price</td>
-        <td>
-            <a href="@routes.Wares.edit(purchaseId, clientId, ware.id)" class="btn btn-default btn-sm">Edit</a>
-            <a href="#" data-redirect="@routes.Wares.index(purchaseId, clientId)" data-target="@routes.Wares.delete(purchaseId, clientId, ware.id)" class="btn btn-sm btn-danger">Delete</a>
-        </td>
-    </tr>
-    }
-    @if(wares.isEmpty) {
-    <tr>
-        <td colspan="3">
-            <div class="alert alert-info">
-                <strong>Data is nothing.</strong>
-            </div>
-        </td>
-    </tr>
-    }
-    </tbody>
-</table>
-
-<div class="form-actions">
-    <a href="@routes.Wares.newPage(purchaseId, clientId)" class="btn btn-primary">Create</a>
-</div>
+@table(wares, purchaseId, clientId)
 }

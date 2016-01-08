@@ -10,30 +10,35 @@ activerecord.errors.format = doesn''t match format
 activerecord.errors.confirmation = doesn''t match
 activerecord.errors.accepted = must be accepted
 
-activerecord.models.User.name = Name
-activerecord.models.User.login = Login
-activerecord.models.User.email = Email
-activerecord.models.User.password = Password
-activerecord.models.User.passwordConfirmation = Password confirmation
-
+activerecord.models.Purchase.create = Создать закупку
+activerecord.models.Purchase.title = Закупки
+activerecord.models.Purchase.empty_list = Закупок нету
 activerecord.models.Purchase.name = Название закупки
 activerecord.models.Purchase.sum = Сумма
 activerecord.models.Purchase.deliveryPrice = Стоимость доставки
 activerecord.models.Purchase.empty_list = Пора создать закупку
 
+activerecord.models.Client.create = Добавить клиента
+activerecord.models.Client.title = Клиенты
+activerecord.models.Client.empty_list = В закупке нет клиентов
 activerecord.models.Client.name = Имя клиента
 activerecord.models.Client.sum = Сумма
 activerecord.models.Client.deliveryPrice = Стоимость доставки
 activerecord.models.Client.empty_list = Пора добавить клиента
 
+activerecord.models.Ware.create = Добавить товар
+activerecord.models.Ware.title = Товары
+activerecord.models.Ware.empty_list = У клиента нет товаров
 activerecord.models.Ware.name = Наименование товара
 activerecord.models.Ware.price = Цена
 
+common.home = Главная
 common.actions = Действия
 common.edit = Редактировать
+common.update = Сохранить
 common.delete = Удалить
+common.back = Назад
 common.cancel = Отменить
+common.are_you_sure = Уверены?
 
 common.languages = Язык
-common.lang.en = English
-common.lang.ru = Русский
