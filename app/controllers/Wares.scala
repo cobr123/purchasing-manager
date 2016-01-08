@@ -1,12 +1,15 @@
 package controllers
 
+import javax.inject.Inject
+
+import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc._
 import views.html.{ware => view}
 
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Wares extends Controller {
+class Wares @Inject() (val messagesApi: MessagesApi) extends Controller with I18nSupport {
   def withClient(clientId: Long)(block: (Client, Request[AnyContent]) => Result) =
     Action { request =>
       Client.find(clientId).map { m => block(m, request) }.getOrElse { NotFound }

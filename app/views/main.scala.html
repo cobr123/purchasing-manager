@@ -1,4 +1,4 @@
-@(title: String)(content: Html)(implicit flash: Flash = Flash())
+@(title: String)(content: Html)(implicit flash: Flash = Flash(), lang: Lang, messages: Messages)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +51,17 @@
         </div>
     </div>
     }
+    <div align="right">
+        @helper.form(action = routes.Application.changeLocale(), 'class -> "change-locale") {
+        <label>@Messages("common.languages")
+            <select name="locale" onchange="this.form.submit()">
+                @play.api.i18n.Lang.availables(play.api.Play.current).map { l =>
+                <option value="@l.code" @(if(lang.code.startsWith(l.code)) "selected")>@Messages("common.lang." + l.code)</option>
+                }
+            </select>
+        </label>
+        }
+    </div>
     @content
 </div><!-- /container -->
 </body>

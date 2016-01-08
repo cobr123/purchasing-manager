@@ -33,3 +33,7 @@ common.actions = Actions
 common.edit = Edit
 common.delete = Delete
 common.cancel = Cancel
+
+common.languages = Language
+common.lang.en = English
+common.lang.ru = Русский

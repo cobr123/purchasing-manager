@@ -1,17 +1,23 @@
 package controllers
 
+
+import javax.inject.Inject
+
+import play.api.Logger
+import play.api.i18n.{I18nSupport, MessagesApi, Messages}
 import play.api.mvc._
 import views.html.{purchase => view}
 
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Purchases extends Controller {
-  def index = Action {
+class Purchases @Inject() (val messagesApi: MessagesApi) extends Controller with I18nSupport {
+  def index = Action { implicit request =>
+    Logger.logger.debug("request2Messages.lang: " +  Messages("common.languages"))
     Ok(view.index(Purchase.all.toList))
   }
 
-  def show(id: Long) = Action {
+  def show(id: Long) = Action {implicit request =>
     Purchase.find(id) match {
       case Some(purchase) => Ok(view.show(purchase))
       case _ => NotFound

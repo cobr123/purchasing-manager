@@ -6,6 +6,7 @@ GET     /initTestTables              controllers.Application.initTestTables
 
 # Home page
 GET     /                            controllers.Application.index
+GET     /change_locale               controllers.Application.changeLocale
 
 GET     /purchases                   controllers.Purchases.index
 GET     /purchases/new               controllers.Purchases.newPage

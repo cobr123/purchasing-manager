@@ -1,15 +1,14 @@
 package controllers
 
-import java.math.MathContext
-
 import models._
-import play.api._
+import play.api.i18n.{Messages, Lang, MessagesApi, I18nSupport}
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
-import com.github.aselab.activerecord.dsl._
+import play.api.Logger
+import javax.inject.Inject
 
-class Application extends Controller {
+class Application @Inject() (val messagesApi: MessagesApi)  extends Controller  with I18nSupport {
   Tables.initialize
 //  initTestTables
 
@@ -32,5 +31,22 @@ class Application extends Controller {
 
   def index = Action {
     Redirect(routes.Purchases.index)
+  }
+
+  def changeLocale = Action {implicit request =>
+    val referrer = request.headers.get(REFERER).getOrElse("/")
+    val form = Form("locale" -> nonEmptyText)
+    Logger.logger.debug("request2Messages.lang: " +  request2Messages.lang)
+
+    form.bindFromRequest.fold(
+      errors => {
+        Logger.logger.debug("The locale can not be change to : " + errors.get)
+        Redirect(referrer)
+      },
+      locale => {
+        Logger.logger.debug("Change user lang to : " + locale)
+        Redirect(referrer).withLang(Lang(locale))
+      }
+    )
   }
 }
