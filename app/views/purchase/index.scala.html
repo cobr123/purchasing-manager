@@ -1,0 +1,47 @@
+@(purchases: List[models.Purchase])(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+
+@main("Purchase list") {
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Purchase</li>
+</ul>
+
+<div class="page-header">
+    <h1>Purchase</h1>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>@Messages("activerecord.models.Purchase.name")</th>
+        <th>@Messages("common.actions")</th>
+    </tr>
+    </thead>
+    <tbody>
+    @purchases.map { m =>
+    <tr>
+        <td><a href="@routes.Purchases.show(m.id)">@m.name</a></td>
+        <td>
+            <a href="@routes.Purchases.edit(m.id)" class="btn btn-default btn-sm">Edit</a>
+            <a href="#" data-redirect="@routes.Purchases.index" data-target="@routes.Purchases.delete(m.id)" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+    </tr>
+    }
+    @if(purchases.isEmpty) {
+    <tr>
+        <td colspan="2">
+            <div class="alert alert-info">
+                <strong>Data is nothing.</strong>
+            </div>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<div class="form-actions">
+    <a href="@routes.Purchases.newPage" class="btn btn-primary">Create</a>
+</div>
+}

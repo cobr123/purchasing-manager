@@ -1,0 +1,50 @@
+@(clients: List[models.Client], purchaseId: Long)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+@import com.github.aselab.activerecord.dsl._
+
+@main("Client list") {
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Purchases.show(purchaseId)">Purchase</a></li>
+    <li class="active">Client</li>
+</ul>
+
+<div class="page-header">
+    <h1>Client</h1>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>@Messages("activerecord.models.Client.name")</th>
+        <th>@Messages("Actions")</th>
+    </tr>
+    </thead>
+    <tbody>
+    @clients.map { client =>
+    <tr>
+        <td><a href="@routes.Clients.show(purchaseId, client.id)">@client.name</a></td>
+        <td>@client.deliveryPrice</td>
+        <td>
+            <a href="@routes.Clients.edit(purchaseId, client.id)" class="btn btn-default btn-sm">Edit</a>
+            <a href="#" data-redirect="@routes.Clients.index(purchaseId)" data-target="@routes.Clients.delete(client.id, purchaseId)" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+    </tr>
+    }
+    @if(clients.isEmpty) {
+    <tr>
+        <td colspan="3">
+            <div class="alert alert-info">
+                <strong>Data is nothing.</strong>
+            </div>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<div class="form-actions">
+    <a href="@routes.Clients.newPage(purchaseId)" class="btn btn-primary">Create</a>
+</div>
+}

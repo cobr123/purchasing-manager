@@ -1,0 +1,32 @@
+@(ware: models.Ware, purchaseId: Long, clientId: Long)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+@import com.github.aselab.activerecord.dsl._
+
+@main("Ware info") {
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Clients.show(purchaseId, clientId)">Clients</a></li>
+    <li><a href="@routes.Clients.index(purchaseId)">@ware.client.name</a></li>
+    <li class="active">@ware.name</li>
+</ul>
+
+<div class="page-header">
+    <h1>Ware</h1>
+</div>
+<div class="col-lg-8">
+    <dl class="dl-horizontal">
+        <dt>@Messages("activerecord.models.Ware.name")</dt>
+        <dd>@ware.name</dd>
+        <dt>@Messages("activerecord.models.Ware.price")</dt>
+        <dd>@ware.price</dd>
+    </dl>
+
+    <div class="well">
+        <a href="@routes.Wares.index(purchaseId, clientId)" class="btn btn-default">Back</a>
+        <a href="@routes.Wares.edit(purchaseId, clientId, ware.id)" class="btn btn-default">Edit</a>
+        <a href="#" data-redirect="@routes.Wares.index(purchaseId, clientId)" data-target="@routes.Wares.delete(purchaseId, clientId, ware.id)" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+}

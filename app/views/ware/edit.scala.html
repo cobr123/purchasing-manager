@@ -1,0 +1,32 @@
+@(ware: Form[models.Ware], purchaseId: Long, clientId: Long, action: Call, buttonLabel: String, title: String)(implicit lang: Lang)
+
+@import models.Ware.helper._
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+
+@main(title) {
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Clients.show(purchaseId, clientId)">Клиенты</a></li>
+    <li><a href="@routes.Wares.index(purchaseId, clientId)">Товары</a></li>
+    <li class="active">
+        @(if (action == routes.Wares.create(purchaseId, clientId)) "Новый товар" else ware.value.map(_.name).getOrElse(ware.data("name")))
+    </li>
+</ul>
+
+<div class="page-header">
+    <h1>Товар</h1>
+</div>
+<div class="col-lg-8">
+    @helper.form(action, 'class -> "form-horizontal") {
+    <fieldset>
+        @inputText(ware("name"))
+        @inputText(ware("price"))
+    </fieldset>
+    <div class="well">
+        <button class="btn btn-primary" type="submit">@buttonLabel</button>
+        <a href="@routes.Wares.index(purchaseId, clientId)" class="btn btn-default">@Messages("common.cancel")</a>
+    </div>
+    }
+</div>
+}

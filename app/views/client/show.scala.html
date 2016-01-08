@@ -1,0 +1,31 @@
+@(client: models.Client, purchaseId: Long)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+
+@main("Client info") {
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Purchases.show(purchaseId)">Purchase</a></li>
+    <li><a href="@routes.Clients.index(purchaseId)">@client.purchase.toOption.get.name</a></li>
+    <li class="active">@client.name</li>
+</ul>
+
+<div class="page-header">
+    <h1>Client</h1>
+</div>
+<div class="col-lg-8">
+    <dl class="dl-horizontal">
+        <dt>@Messages("activerecord.models.Client.name")</dt>
+        <dd>@client.name</dd>
+        <dt>@Messages("activerecord.models.Client.deliveryPrice")</dt>
+        <dd>@client.deliveryPrice</dd>
+    </dl>
+
+    <div class="well">
+        <a href="@routes.Clients.index(purchaseId)" class="btn btn-default">Back</a>
+        <a href="@routes.Clients.edit(client.id, purchaseId)" class="btn btn-default">Edit</a>
+        <a href="#" data-redirect="@routes.Clients.index(purchaseId)" data-target="@routes.Clients.delete(client.id, purchaseId)" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+}

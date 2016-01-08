@@ -1,0 +1,40 @@
+@(purchase: models.Purchase)(implicit lang: Lang)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+@import com.github.aselab.activerecord.dsl._
+
+@main("Purchase info") {
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Purchases.index">Purchase</a></li>
+    <li class="active">@purchase.name</li>
+</ul>
+
+<div class="page-header">
+    <h1>Purchase</h1>
+</div>
+<div class="col-lg-8">
+    <dl class="dl-horizontal">
+        <dt>@Messages("activerecord.models.Purchase.name")</dt>
+        <dd>@purchase.name</dd>
+        <dt>
+            @Messages("activerecord.models.Purchase.ads")
+            <a href="@routes.Clients.newPage(purchase.id)" class="btn btn-xs btn-success">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </dt>
+        <dd>
+            @purchase.clients.map { client =>
+            @client.name (@client.deliveryPrice)<br/>
+            }
+        </dd>
+    </dl>
+
+    <div class="well">
+        <a href="@routes.Purchases.index" class="btn btn-default">Back</a>
+        <a href="@routes.Purchases.edit(purchase.id)" class="btn btn-default">Edit</a>
+        <a href="#" data-redirect="@routes.Purchases.index" data-target="@routes.Purchases.delete(purchase.id)" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+}

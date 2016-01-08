@@ -2,21 +2,37 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+GET     /initTestTables              controllers.Application.initTestTables
+
 # Home page
-GET     /                                                   controllers.Application.index
-POST    /                                                   controllers.Application.addPurchase
+GET     /                            controllers.Application.index
 
-#purchases
-GET     /purchase                                           controllers.Application.index
-POST    /purchase                                           controllers.Application.addPurchase
+GET     /purchases                   controllers.Purchases.index
+GET     /purchases/new               controllers.Purchases.newPage
+GET     /purchases/:id               controllers.Purchases.show(id: Long)
+POST    /purchases                   controllers.Purchases.create
+GET     /purchases/:id/edit          controllers.Purchases.edit(id: Long)
+POST    /purchases/:id               controllers.Purchases.update(id: Long)
+DELETE  /purchases/:id               controllers.Purchases.delete(id: Long)
 
-#purchase card
-GET     /purchase/$idPurchase<[0-9]+>                       controllers.Application.purchase(idPurchase: Long)
-POST    /purchase/$idPurchase<[0-9]+>                       controllers.Application.addClient(idPurchase: Long)
+GET     /purchases/:purchaseId/clients          controllers.Clients.index(purchaseId: Long)
+GET     /purchases/:purchaseId/clients/new      controllers.Clients.newPage(purchaseId: Long)
+GET     /purchases/:purchaseId/clients/:id      controllers.Clients.show(purchaseId: Long, id: Long)
+POST    /purchases/:purchaseId/clients          controllers.Clients.create(purchaseId: Long)
+GET     /purchases/:purchaseId/clients/:id/edit controllers.Clients.edit(purchaseId: Long, id: Long)
+POST    /purchases/:purchaseId/clients/:id      controllers.Clients.update(purchaseId: Long, id: Long)
+DELETE  /purchases/:purchaseId/clients/:id      controllers.Clients.delete(purchaseId: Long, id: Long)
 
-#client card
-GET     /client/$idClient<[0-9]+>                           controllers.Application.client(idClient: Long)
-POST    /client/$idClient<[0-9]+>                           controllers.Application.addWare(idClient: Long)
+GET     /purchases/:purchaseId/clients/:clientId/wares              controllers.Wares.index(purchaseId: Long, clientId: Long)
+GET     /purchases/:purchaseId/clients/:clientId/wares/new          controllers.Wares.newPage(purchaseId: Long, clientId: Long)
+GET     /purchases/:purchaseId/clients/:clientId/wares/:clientId    controllers.Wares.show(purchaseId: Long, clientId: Long, id: Long)
+POST    /purchases/:purchaseId/clients/:clientId/wares              controllers.Wares.create(purchaseId: Long, clientId: Long)
+GET     /purchases/:purchaseId/clients/:clientId/wares/:id/edit     controllers.Wares.edit(purchaseId: Long, clientId: Long, id: Long)
+POST    /purchases/:purchaseId/clients/:clientId/wares/:id          controllers.Wares.update(purchaseId: Long, clientId: Long, id: Long)
+DELETE  /purchases/:purchaseId/clients/:clientId/wares/:id          controllers.Wares.delete(purchaseId: Long, clientId: Long, id: Long)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                                       controllers.Assets.versioned(path="/public", file: Asset)
+# Enable webjar based resources to be returned
+GET     /webjars/*file                                      controllers.WebJarAssets.at(file)

@@ -13,7 +13,9 @@ libraryDependencies ++= Seq(
   specs2 % Test,
   "com.github.aselab" %% "scala-activerecord" % "0.3.1",
   "com.github.aselab" %% "scala-activerecord-play2" % "0.3.1",
-  "com.h2database" % "h2" % "1.4.185"
+  "com.h2database" % "h2" % "1.4.185",
+  "org.webjars" %% "webjars-play" % "2.4.0-1",
+  "org.webjars" % "bootstrap" % "3.3.6"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
