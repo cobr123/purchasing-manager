@@ -5,8 +5,8 @@
 @main(title) {
 <ul class="breadcrumb">
     <!--<li><a href="/">@Messages("common.home")</a></li>-->
-    <li><a href="@routes.Purchases.show(purchaseId)">@Messages("activerecord.models.Purchase.title")</a></li>
-    <li><a href="@routes.Clients.index(purchaseId)">@Messages("activerecord.models.Client.title")</a></li>
+    <li><a href="@routes.Purchases.index">@Messages("activerecord.models.Purchase.title")</a></li>
+    <li><a href="@routes.Purchases.show(purchaseId)">@Purchase.find(purchaseId).get.name</a></li>
     <li class="active">
         @(if (action == routes.Clients.create(purchaseId)) "Новый клиент" else client.value.map(_.name).getOrElse(client.data("name")))
     </li>

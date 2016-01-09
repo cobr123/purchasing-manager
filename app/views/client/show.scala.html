@@ -25,8 +25,8 @@
         </dl>
 
         <a href="@routes.Purchases.show(purchaseId)" class="btn btn-default">@Messages("common.back")</a>
-        <a href="@routes.Clients.edit(client.id, purchaseId)" class="btn btn-default">@Messages("common.edit")</a>
-        <a href="#" data-redirect="@routes.Clients.index(purchaseId)" data-target="@routes.Clients.delete(client.id, purchaseId)" class="btn btn-danger">@Messages("common.delete")</a>
+        <a href="@routes.Clients.edit(purchaseId, client.id)" class="btn btn-default">@Messages("common.edit")</a>
+        <a href="#" data-redirect="@routes.Purchases.show(purchaseId)" data-target="@routes.Clients.delete(purchaseId, client.id)" class="btn btn-danger">@Messages("common.delete")</a>
     </div>
 </div>
 

@@ -22,7 +22,7 @@
     <div class="well">
         <!--<a href="@routes.Wares.index(purchaseId, clientId)" class="btn btn-default">@Messages("common.back")</a>-->
         <a href="@routes.Wares.edit(purchaseId, clientId, ware.id)" class="btn btn-default">@Messages("common.edit")</a>
-        <a href="#" data-redirect="@routes.Wares.index(purchaseId, clientId)" data-target="@routes.Wares.delete(purchaseId, clientId, ware.id)" class="btn btn-danger">@Messages("common.delete")</a>
+        <a href="#" data-redirect="@routes.Clients.show(purchaseId, clientId)" data-target="@routes.Wares.delete(purchaseId, clientId, ware.id)" class="btn btn-danger">@Messages("common.delete")</a>
     </div>
 </div>
 }

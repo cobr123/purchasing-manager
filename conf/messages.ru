@@ -12,6 +12,7 @@ activerecord.errors.accepted = must be accepted
 
 activerecord.models.Purchase.create = Создать закупку
 activerecord.models.Purchase.title = Закупки
+activerecord.models.Purchase.new = Новая закупка
 activerecord.models.Purchase.empty_list = Закупок нету
 activerecord.models.Purchase.name = Название закупки
 activerecord.models.Purchase.sum = Сумма
@@ -35,6 +36,7 @@ activerecord.models.Ware.price = Цена
 common.home = Главная
 common.actions = Действия
 common.edit = Редактировать
+common.create = Создать
 common.update = Сохранить
 common.delete = Удалить
 common.back = Назад

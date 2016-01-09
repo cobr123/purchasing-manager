@@ -17,7 +17,7 @@
         <td>@ware.price.setScale(2).rounded</td>
         <td>
             <a href="@routes.Wares.edit(purchaseId, clientId, ware.id)" class="btn btn-default btn-sm">@Messages("common.edit")</a>
-            <a href="#" data-redirect="@routes.Wares.index(purchaseId, clientId)" data-target="@routes.Wares.delete(purchaseId, clientId, ware.id)" class="btn btn-sm btn-danger">@Messages("common.delete")</a>
+            <a href="#" data-redirect="@routes.Clients.show(purchaseId, clientId)" data-target="@routes.Wares.delete(purchaseId, clientId, ware.id)" class="btn btn-sm btn-danger">@Messages("common.delete")</a>
         </td>
     </tr>
     }

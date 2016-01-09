@@ -24,12 +24,12 @@ class Purchases @Inject() (val messagesApi: MessagesApi) extends Controller with
   }
 
   def newPage = Action { implicit request =>
-    Ok(view.edit(Purchase.form, routes.Purchases.create, "Create", "Purchase create"))
+    Ok(view.edit(Purchase.form, routes.Purchases.create, Messages("common.create"), Messages("activerecord.models.Purchase.create")))
   }
 
   def create = Action { implicit request =>
     Purchase.form.bindFromRequest.fold(
-      errors => BadRequest(view.edit(errors, routes.Purchases.create, "Create", "Purchase create")), {
+      errors => BadRequest(view.edit(errors, routes.Purchases.create, Messages("common.create"), Messages("activerecord.models.Purchase.create"))), {
         purchase =>
           Purchase.transaction { purchase.save }
           Redirect(routes.Purchases.show(purchase.id))
@@ -38,7 +38,7 @@ class Purchases @Inject() (val messagesApi: MessagesApi) extends Controller with
 
   def edit(id: Long) = Action { implicit request =>
     Purchase.find(id) match {
-      case Some(purchase) => Ok(view.edit(Purchase.form(purchase), routes.Purchases.update(id), "Update", "Purchase edit"))
+      case Some(purchase) => Ok(view.edit(Purchase.form(purchase), routes.Purchases.update(id), Messages("common.update"), "Purchase edit"))
       case _ => NotFound
     }
   }
@@ -47,7 +47,7 @@ class Purchases @Inject() (val messagesApi: MessagesApi) extends Controller with
     Purchase.find(id) match {
       case Some(purchase) =>
         Purchase.form(purchase).bindFromRequest.fold(
-          errors => BadRequest(view.edit(errors, routes.Purchases.update(id), "Update", "Purchase edit")), {
+          errors => BadRequest(view.edit(errors, routes.Purchases.update(id), Messages("common.update"), "Purchase edit")), {
             purchase =>
               Purchase.transaction { purchase.save }
               Redirect(routes.Purchases.index)

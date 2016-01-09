@@ -19,7 +19,7 @@
         <td>@client.deliveryPrice.setScale(2).rounded</td>
         <td>
             <a href="@routes.Clients.edit(purchaseId, client.id)" class="btn btn-default btn-sm">@Messages("common.edit")</a>
-            <a href="#" data-redirect="@routes.Clients.index(purchaseId)" data-target="@routes.Clients.delete(client.id, purchaseId)" class="btn btn-sm btn-danger">@Messages("common.delete")</a>
+            <a href="#" data-redirect="@routes.Purchases.show(purchaseId)" data-target="@routes.Clients.delete(purchaseId, client.id)" class="btn btn-sm btn-danger">@Messages("common.delete")</a>
         </td>
     </tr>
     }

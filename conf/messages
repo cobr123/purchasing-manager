@@ -12,6 +12,7 @@ activerecord.errors.accepted = must be accepted
 
 activerecord.models.Purchase.create = Create purchase
 activerecord.models.Purchase.title = Purchase
+activerecord.models.Purchase.new = New purchase
 activerecord.models.Purchase.empty_list = Purchases not found
 activerecord.models.Purchase.name = Name
 activerecord.models.Purchase.sum = Sum
@@ -35,6 +36,7 @@ activerecord.models.Ware.price = Price
 common.home = Home
 common.actions = Actions
 common.edit = Edit
+common.create = Create
 common.update = Update
 common.delete = Delete
 common.back = Back

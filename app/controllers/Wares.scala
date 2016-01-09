@@ -16,34 +16,54 @@ class Wares @Inject() (val messagesApi: MessagesApi) extends Controller with I18
       Client.find(clientId).map { m => block(m, request) }.getOrElse { NotFound }
     }
 
-  def index(purchaseId: Long, clientId: Long) = withClient(clientId) { (c, request) =>
-    Ok(view.index(c.wares.toList, c.purchaseId, c.id))
-  }
-
-  def show(purchaseId: Long, clientId: Long, id: Long) = withClient(clientId) { (m, request) =>
-    m.wares.find(id) match {
-      case Some(ware) => Ok(view.show(ware, purchaseId, clientId))
+  def index(purchaseId: Long, clientId: Long) = Action { implicit request =>
+    Client.find(clientId) match {
+      case Some(c) => {
+        Ok(view.index(c.wares.toList, c.purchaseId, c.id))
+      }
       case _ => NotFound
     }
   }
 
-  def newPage(purchaseId: Long, clientId: Long) = withClient(clientId) { (m, request) =>
-    Ok(view.edit(Ware.form, purchaseId, clientId, routes.Wares.create(purchaseId, clientId), "Create", "Ware create"))
+  def show(purchaseId: Long, clientId: Long, id: Long) = Action { implicit request =>
+    Client.find(clientId) match {
+      case Some(c) => {
+        c.wares.find(id) match {
+          case Some(ware) => Ok(view.show(ware, purchaseId, clientId))
+          case _ => NotFound
+        }
+      }
+      case _ => NotFound
+    }
+  }
+
+  def newPage(purchaseId: Long, clientId: Long) = Action { implicit request =>
+    Client.find(clientId) match {
+      case Some(c) => {
+        Ok(view.edit(Ware.form, purchaseId, clientId, routes.Wares.create(purchaseId, clientId), Messages("common.create"), Messages("activerecord.models.Ware.create")))
+      }
+      case _ => NotFound
+    }
   }
 
   def create(purchaseId: Long, clientId: Long) = withClient(clientId) { (m, request) =>
     Ware.form(Ware.newInstance("clientId" -> clientId)).bindFromRequest()(request).fold(
-      errors => BadRequest(view.edit(errors, purchaseId, clientId, routes.Wares.create(purchaseId, clientId), "Create", "Ware create")), {
+      errors => BadRequest(view.edit(errors, purchaseId, clientId, routes.Wares.create(purchaseId, clientId), Messages("common.create"), Messages("activerecord.models.Ware.create"))), {
         ware =>
           Ware.transaction { ware.save }
           Redirect(routes.Wares.show(purchaseId, ware.clientId, ware.id))
       })
   }
 
-  def edit(purchaseId: Long, clientId: Long, id: Long) = withClient(clientId) { (m, request) =>
-    m.wares.find(id) match {
-      case Some(ware) =>
-        Ok(view.edit(Ware.form(ware.assign("clientId" -> clientId)), purchaseId, clientId, routes.Wares.update(purchaseId, clientId, id), "Update", "Ware edit"))
+  def edit(purchaseId: Long, clientId: Long, id: Long) = Action { implicit request =>
+    Client.find(clientId) match {
+      case Some(c) => {
+        c.wares.find(id) match {
+          case Some(ware) =>
+            Ok(view.edit(Ware.form(ware.assign("clientId" -> clientId)), purchaseId, clientId, routes.Wares.update(purchaseId, clientId, id), Messages("common.update"), "Ware edit"))
+          case _ => NotFound
+        }
+      }
       case _ => NotFound
     }
   }
@@ -52,7 +72,7 @@ class Wares @Inject() (val messagesApi: MessagesApi) extends Controller with I18
     m.wares.find(id) match {
       case Some(ware) =>
         Ware.form(ware).bindFromRequest()(request).fold(
-          errors => BadRequest(view.edit(errors, purchaseId, clientId, routes.Wares.update(purchaseId, clientId, id), "Update", "Ware edit")), {
+          errors => BadRequest(view.edit(errors, purchaseId, clientId, routes.Wares.update(purchaseId, clientId, id), Messages("common.update"), "Ware edit")), {
             ware =>
               Ware.transaction { ware.save }
               Redirect(routes.Clients.show(purchaseId, clientId))
