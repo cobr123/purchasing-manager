@@ -42,5 +42,6 @@ common.delete = Удалить
 common.back = Назад
 common.cancel = Отменить
 common.are_you_sure = Уверены?
+common.create_test_data = Создать тестовые данные
 
 common.languages = Язык

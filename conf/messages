@@ -42,6 +42,7 @@ common.delete = Delete
 common.back = Back
 common.cancel = Cancel
 common.are_you_sure = Are you sure?
+common.create_test_data = Create test data
 
 common.languages = Language
 common.lang.en = English
