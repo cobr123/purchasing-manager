@@ -5,7 +5,7 @@
 
 @main("Client info") {
 <ul class="breadcrumb">
-    <li><a href="/">@Messages("common.home")</a></li>
+    <!--<li><a href="/">@Messages("common.home")</a></li>-->
     <li><a href="@routes.Purchases.index">@Messages("activerecord.models.Purchase.title")</a></li>
     <li><a href="@routes.Purchases.show(purchaseId)">@client.purchase.name</a></li>
     <li class="active">@client.name</li>

@@ -4,7 +4,7 @@
 
 @main("Ware info") {
 <ul class="breadcrumb">
-    <li><a href="/">@Messages("common.home")</a></li>
+    <!--<li><a href="/">@Messages("common.home")</a></li>-->
     <li><a href="@routes.Clients.show(purchaseId, clientId)">@Messages("activerecord.models.Client.title")</a></li>
     <li><a href="@routes.Clients.index(purchaseId)">@ware.client.name</a></li>
     <li class="active">@ware.name</li>
