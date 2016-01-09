@@ -15,8 +15,14 @@
 <div class="col-lg-8">
     @helper.form(action, 'class -> "form-horizontal") {
     <fieldset>
-        @inputText(client("name"))
-        @inputText(client("deliveryPrice"))
+        @inputText(
+        field = client("name"),
+        args = '_label -> Messages("activerecord.models.Client.name"), 'required -> "required"
+        )
+        @inputText(
+        field = client("deliveryPrice"),
+        args = '_label -> Messages("activerecord.models.Client.deliveryPrice"), 'step -> "0.01", 'type -> "number"
+        )
     </fieldset>
     <div class="well">
         <button class="btn btn-primary" type="submit">@buttonLabel</button>
